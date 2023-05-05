@@ -1,0 +1,11 @@
+1 0.5 0.25 0.25 
+Computer Science
+
+2 0.25 0.30 0.45 
+Historical Faculty
+
+2 0.25 0.30 0.45 
+Historical Faculty
+
+1 0.5 0.25 0.25 
+Computer Science
