@@ -9,10 +9,10 @@ private:
 	double math_coef;
 	double ukrainian_coef;
 	double history_coef;
-	// threshold_score
+	double threshold_score;
 public:
 	BaseFaculty();
-	BaseFaculty(int id, double math_coef, double ukrainian_coef, double history_coef);
+	BaseFaculty(int id, double math_coef, double ukrainian_coef, double history_coef, double threshold_score);
 	BaseFaculty(const BaseFaculty& s);
 	BaseFaculty& operator=(const BaseFaculty& s);
 
@@ -27,6 +27,9 @@ public:
 
 	double getHistoryCoef();
 	void setHistoryCoef(double historyCoef);
+
+	double getThresholdScore();
+	void setThresholdScore(double thresholdScore);
 
 	string toString();
 };

@@ -19,7 +19,7 @@ vector<Faculty> readFacultyFile(const string& fileName) {
                     continue;
                 }
                 int id;
-                double math_coef, ukrainian_coef, history_coef;
+                double math_coef, ukrainian_coef, history_coef, threshold_score;
                 string specialty;
 
                 stringstream ss(line);
@@ -38,10 +38,16 @@ vector<Faculty> readFacultyFile(const string& fileName) {
                     }
                     if (!idExists) {
                         ss >> math_coef >> ukrainian_coef >> history_coef;
-                        getline(file, specialty);
+                        ss >> threshold_score;
+                        if (threshold_score < 101 || threshold_score > 200) {
+                            throw runtime_error("Invalid threshold_score on line! " + line);
+                        } 
+                        else {
+                            getline(file, specialty);
 
-                        Faculty faculty(id, math_coef, ukrainian_coef, history_coef, specialty);
-                        faculties.push_back(faculty);
+                            Faculty faculty(id, math_coef, ukrainian_coef, history_coef, specialty, threshold_score);
+                            faculties.push_back(faculty);
+                        }
                     }
                     else {
                         cout << "Error: ID " << id << " already exists." << std::endl;

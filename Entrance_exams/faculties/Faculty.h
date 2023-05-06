@@ -10,8 +10,8 @@ private:
 
 public:
 	Faculty();
-	Faculty(int id, double mathCoef, double ukrCoef, double histCoef, string spec)
-		: BaseFaculty(id, mathCoef, ukrCoef, histCoef) {
+	Faculty(int id, double mathCoef, double ukrCoef, double histCoef, string spec, double thres_sc)
+		: BaseFaculty(id, mathCoef, ukrCoef, histCoef, thres_sc) {
 		specialty = spec;
 	}
 
