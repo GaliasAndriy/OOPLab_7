@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="entities\Applicant.cpp" />
+    <ClCompile Include="entities\Exam.cpp" />
     <ClCompile Include="entities\Lecturer.cpp" />
     <ClCompile Include="entities\Person.cpp" />
     <ClCompile Include="faculties\BaseFaculty.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\Applicant.h" />
+    <ClInclude Include="entities\Exam.h" />
     <ClInclude Include="entities\Lecturer.h" />
     <ClInclude Include="entities\Person.h" />
     <ClInclude Include="faculties\BaseFaculty.h" />
