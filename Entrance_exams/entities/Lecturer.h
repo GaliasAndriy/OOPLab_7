@@ -7,22 +7,26 @@ using namespace std;
 class Lecturer : public Person {
 private:
 	string title;
-	// Here we should add ID of university, in which the lecturer teaches. It would be a connection between faculies and their lecturers. 
-	// Each Faculty will be as main entity and lecturers belong to Faculty
+	int facultyID;
 public:
 	Lecturer();
-	Lecturer(int id, string firstN, string lastN, string middleN, int AGE, string titl)
+	Lecturer(int id, string firstN, string lastN, string middleN, int AGE, string titl, int fID)
 		: Person(id, firstN, lastN, middleN, AGE) {
 		title = titl;
+		facultyID = fID;
 	}
 
 	Lecturer(const Lecturer& s) : Person(s) {
 		title = s.title;
+		facultyID = s.facultyID;
 	}
 	Lecturer& operator=(const Lecturer& s);
 
 	string getTitle();
 	void setTitle(string title);
+
+	int getFacultyId();
+	void setFacultyId(int id);
 
 	string toString();
 };

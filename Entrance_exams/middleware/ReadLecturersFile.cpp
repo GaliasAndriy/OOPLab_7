@@ -15,7 +15,9 @@ vector<Lecturer> readLecturerFile(const string& fileName) {
         string line;
         while (getline(file, line)) {
             try {
-                int id, age;
+                if (line.empty()) {continue;}
+
+                int id, age, facultyID;
                 string firstName, lastName, middleName, title;
 
                 stringstream ss(line);
@@ -33,9 +35,10 @@ vector<Lecturer> readLecturerFile(const string& fileName) {
                         }
                     }
                     if (!idExists) {
-                        ss >> firstName >> lastName >> middleName >> age >> title;
+                        ss >> firstName >> lastName >> middleName >> age >> facultyID;
+                        getline(file, title);
 
-                        Lecturer person(id, firstName, lastName, middleName, age, title);
+                        Lecturer person(id, firstName, lastName, middleName, age, title, facultyID);
                         lecturers.push_back(person);
                     }
                     else {

@@ -5,11 +5,13 @@ using namespace std;
 
 Lecturer::Lecturer() {
     title = "no data";
+    facultyID = NULL;
 }
 
 Lecturer& Lecturer::operator=(const Lecturer& s) {
     this->Person::operator=(s);
     title = s.title;
+    facultyID = s.facultyID;
     return *this;
 }
 
@@ -20,7 +22,15 @@ void Lecturer::setTitle(string titl) {
     title = titl;
 }
 
+int Lecturer::getFacultyId() {
+    return facultyID;
+}
+void Lecturer::setFacultyId(int id) {
+    facultyID = id;
+}
+
 string Lecturer::toString() {
-    string result = Person::toString() + "\n Title: " + title;
+    string facultyId = to_string(facultyID);
+    string result = Person::toString() + "\n Title: " + title + "\n Faculty ID: " + facultyId;
     return result;
 }

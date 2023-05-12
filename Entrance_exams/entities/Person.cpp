@@ -32,7 +32,6 @@ Person& Person::operator=(const Person& s) {
     lastName = s.lastName;
     middleName = s.middleName;
     age = s.age;
-    cout << "   Person& operator=(const Person& s)" << endl;
     return *this;
 }
 
@@ -69,6 +68,10 @@ int Person::getAge() {
 }
 void Person::setAge(int a) {
     age = a;
+}
+
+bool Person::operator<(const Person& other) const {
+    return id < other.id;
 }
 
 string Person::toString() {

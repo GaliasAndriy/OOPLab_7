@@ -146,9 +146,11 @@
     <ClCompile Include="faculties\BaseFaculty.cpp" />
     <ClCompile Include="faculties\Faculty.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="middleware\newLecturerForFaculty.cpp" />
     <ClCompile Include="middleware\ReadApplicantsFile.cpp" />
     <ClCompile Include="middleware\ReadFacultyFile.cpp" />
     <ClCompile Include="middleware\ReadLecturersFile.cpp" />
+    <ClCompile Include="middleware\WriteNewLecturerToFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\Applicant.h" />
@@ -157,15 +159,19 @@
     <ClInclude Include="entities\Person.h" />
     <ClInclude Include="faculties\BaseFaculty.h" />
     <ClInclude Include="faculties\Faculty.h" />
+    <ClInclude Include="middleware\newLecturerForFaculty.h" />
     <ClInclude Include="middleware\ReadApplicantsFile.h" />
     <ClInclude Include="middleware\ReadFacultyFile.h" />
     <ClInclude Include="middleware\ReadLecturersFile.h" />
+    <ClInclude Include="middleware\WriteNewLecturerToFile.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="database\rejected_applicants.txt" />
     <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="database\applicants.txt" />
+    <Text Include="database\approved_applicants.txt" />
     <Text Include="database\faculties.txt" />
     <Text Include="database\lecturers.txt" />
   </ItemGroup>

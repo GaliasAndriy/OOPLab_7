@@ -45,6 +45,12 @@
     <ClCompile Include="entities\Exam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="middleware\WriteNewLecturerToFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="middleware\newLecturerForFaculty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\Person.h">
@@ -74,13 +80,21 @@
     <ClInclude Include="entities\Exam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="middleware\WriteNewLecturerToFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="middleware\newLecturerForFaculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.md" />
+    <None Include="database\rejected_applicants.txt" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="database\applicants.txt" />
     <Text Include="database\lecturers.txt" />
     <Text Include="database\faculties.txt" />
+    <Text Include="database\approved_applicants.txt" />
   </ItemGroup>
 </Project>

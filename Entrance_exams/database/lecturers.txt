@@ -1,2 +1,11 @@
-1 Andrew Tomahawk Tomphson 45 Assistant
-2 Yaroslav Drin Myhailovych 71 Proffesor
+1 Andrew Tomahawk Tomphson 45 2
+Assistant 
+
+3 Alex Kozyb Viktorovych 32 1
+Assistant 
+
+5 Vasyl Lazoryk Vasylovych 54 1
+Assistant Officer 
+
+2 Yaroslav Drin Myhailovych 71 1
+Proffesor 

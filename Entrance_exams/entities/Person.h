@@ -32,5 +32,7 @@ public:
     int getAge();
     void setAge(int a);
 
+    bool operator<(const Person& other) const;
+
     string toString();
 };
