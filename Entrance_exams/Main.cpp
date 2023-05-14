@@ -3,9 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <iostream>
 #include <vector>
-#include <fstream>
 #include <sstream>
 #include <algorithm>
 #include <chrono>
@@ -24,139 +22,74 @@ using namespace std;
 #include "middleware/newLecturerForFaculty.h"
 #include "middleware/ChooseObject.h"
 #include "middleware/CreateNewExam.h"
-#include "FinalResult.h"
-#include "WriteExamResultToFiles.h"
+#include "middleware/FinalResult.h"
+#include "middleware/WriteExamResultToFiles.h"
+
+#include "Server.h"
 
 int main() {
-    cout << "Testing applicants" << endl;
+    cout << "---------------------------------" << endl;
+    cout << "|" << "\033[33m" << "        Entrance Exams" << "\033[0m" << "         |" << endl;
     srand(time(nullptr));
+    Server server;
 
-   /*char choice;
+   char choice;
    do {
+       cout << "---------------------------------" << endl;
+       cout << "|" << "\033[32m" << "  Main Menu:" << "\033[0m" << "                   |" << endl;
+       cout << "|  1. Show list of applicants   |" << endl;
+       cout << "|  2. Show list of faculties    |" << endl;
+       cout << "|  3. Show list of lecturers    |" << endl;
+       cout << "|  4. Show list of passed exams |" << endl;
+       cout << "|  5. Show list of failed exams |" << endl;
+       cout << "|  6. New exam                  |" << endl;
+       cout << "|  7. Find applicant by name    |" << endl;
+       cout << "|  8. Find faculty by ID        |" << endl;
+       cout << "|  9. Show applicant exams      |" << endl;
+       cout << "|  10. Clear console            |" << endl;
+       cout << "|  11. Enter 'e' to exit        |" << endl;
+       cout << "---------------------------------" << endl;
 
+       cout << " Your choice: ";
+       cin >> choice;
 
-   } while ();*/
+       switch (choice) {
+       case '1':
+           server.showApplicantList();
+           break;
+       case '2':
+           server.showFacultyList();
+           break;
+       case '3':
+           server.showLecturerList();
+           break;
+       case '4':
+           //server.showApprovedExamsList();
+           break;
+       case '5':
+           //server.showRejectedExamList();
+           break;
+       case '6':
+           server.creatNewExam();
+           break;
+       case '7':
+           cout << "\n Find applicant by their first and last name" << endl;
+           server.findApplicantByName();
+           break;
+       case '8':
+           cout << "\n Find faculty by ID" << endl;
+           server.findFacultyById();
+           break;
+       case '10':
+           system("cls");
+           break;
+       case 'e':
+           break;
+       default:
+           cout << "Invalid choice. Please enter a valid option or 'e' to exit." << endl;
+       }
 
-
-    // Getting list of all the applicants
-    string fileName = "database/applicants.txt";
-    vector<Applicant> applicants = readFile(fileName);
-
-    // Sort applicants
-    sort(applicants.begin(), applicants.end(),
-        [](const Applicant& a, const Applicant& b) { return a < b; });
-    cout << "\nAll valid Applicant objects:" << endl;
-    cout << "------------------------------------------------------" << endl;
-    for (auto& person : applicants) {
-        cout << person.toString() << endl;
-    }
-    cout << "------------------------------------------------------" << endl;
-
-    // Then we need to choose an applicant by their ID
-    cout << "\nChoose an applicant from the previous list: " << endl;
-    int userID = chooseApplicant(applicants);
-
-    // After that, we should output a list of faculties and applicant be able to choose one of them
-    string facultyFile = "database/faculties.txt";
-    vector<Faculty> faculties = readFacultyFile(facultyFile);
-    // Sort faculties
-    sort(faculties.begin(), faculties.end(),
-        [](const Faculty& a, const Faculty& b) { return a < b; });
-    cout << "\nList of faculties:" << endl;
-    cout << "------------------------------------------------------";
-    for (auto& faculty : faculties) {
-        cout << faculty.toString();
-    }
-    cout << "------------------------------------------------------";
-
-    // Here's a list of faculties and applicant may choose one of them
-    cout << "\nChoose the faculty from the previous list: " << endl;
-    int facultyID = chooseFaculty(faculties);
-    string facultyName;
-    for (auto& faculty : faculties) {
-        if (faculty.getId() == facultyID) {
-            facultyName = faculty.getSpecialty();
-        }
-    }
-
-    // For choosen facultyID, we're going to show the list of lecturers that belongs to the faculty
-    string lecturerFile = "database/lecturers.txt";
-    vector<Lecturer> lecturers = readLecturerFile(lecturerFile);
-    vector<Lecturer> sortedLecturers;
-    cout << "\nList of lecturers that belongs to " << facultyName << endl;
-    cout << "--------------------------------------" << endl;
-    for (auto& lecturer : lecturers) {
-        if (lecturer.getFacultyId() == facultyID) {
-            sortedLecturers.push_back(lecturer);
-        }
-    }
-
-    // Sort lecturers
-    sort(sortedLecturers.begin(), sortedLecturers.end(),
-        [](const Lecturer& a, const Lecturer& b) { return a < b; });
-    for (auto& lecturer : sortedLecturers) {
-        cout << lecturer.toString() << endl;
-        cout << endl;
-    }
-    cout << "--------------------------------------" << endl;
-
-    // Randomly pick a lecturer
-    int chosenLecturerId = 0;
-    if (sortedLecturers.size() > 0) {
-        int index = rand() % sortedLecturers.size();  // generate a random index
-        Lecturer chosenLecturer = sortedLecturers[index];
-        cout << "\nChosen lecturer: " << endl;
-        cout << chosenLecturer.toString() << endl;
-        chosenLecturerId = chosenLecturer.getId();
-    }
-    // Create one more lecturers which belongs to specific faculty
-    else {
-        chosenLecturerId = createNewLecturer(facultyID);
-        for (auto& lect : lecturers) {
-            if (lect.getId() == chosenLecturerId) {
-                cout << "\n Created and choosen lecturer: " << endl;
-                cout << lect.toString() << endl;
-            }
-        }
-    }
-
-    // Create new exam with generated id
-    Exam newExam = generateExam();
-    double exam_grade = 0;
-    bool isPassed = false;
-    for (auto& faculty : faculties) {
-        if (faculty.getId() == facultyID) {
-            exam_grade = faculty.getMathCoef() * newExam.getMathMark() + faculty.getUkrainianCoef() * newExam.getUkrMark()
-                + faculty.getHistoryCoef() * newExam.getHistorymark();
-        }
-        newExam.setExamGrade(exam_grade);
-        if (faculty.getThresholdScore() <= exam_grade) {
-            isPassed = true;
-        }
-    }
-
-    // Imitating of request
-    cout << "Processing request ";
-    cout.flush(); // flush the output buffer to ensure message is printed immediately
-    for (int i = 0; i < 3; i++) {
-        this_thread::sleep_for(chrono::seconds(1)); 
-        cout << ".";
-        cout.flush(); 
-    }
-    cout << endl; 
-
-    // Then we should open a proper file, based on isPassed flag and set id.
-    bool resultSuccess = showResultToClient(isPassed, newExam, applicants, userID, lecturers, chosenLecturerId);
-    
-    if (resultSuccess) {
-        cout << "\n Congratulations! You're successfully passed the entrance exams!" << endl;
-        system("cls");
-    }
-    else {
-        cout << "\n We're sorry, You'are not passed the entrance exams! Work harder." << endl;
-        system("cls");
-    }
-    cout << "Clear" << endl;
+   } while (choice != 'e');
 
     return 0;
 }

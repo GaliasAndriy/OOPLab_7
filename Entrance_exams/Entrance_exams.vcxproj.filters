@@ -60,10 +60,10 @@
     <ClCompile Include="middleware\newLecturerForFaculty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FinalResult.cpp">
+    <ClCompile Include="middleware\WriteExamResultToFiles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WriteExamResultToFiles.cpp">
+    <ClCompile Include="Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,10 +110,13 @@
     <ClInclude Include="middleware\newLecturerForFaculty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FinalResult.h">
+    <ClInclude Include="middleware\FinalResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WriteExamResultToFiles.h">
+    <ClInclude Include="middleware\WriteExamResultToFiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

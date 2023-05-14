@@ -40,6 +40,6 @@ void Applicant::setPassport(string pass) {
 
 string Applicant::toString() {
     string result = Person::toString() + "\n Phone number: " + phone_number + "\n Email: " + email
-        + "\n Passport: " + passport + "\n";
+        + "\n Passport: " + passport;
     return result;
 }
