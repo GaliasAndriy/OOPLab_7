@@ -1,2 +1,3 @@
-﻿  WriteNewLecturerToFile.cpp
+﻿  Main.cpp
+D:\OOP_lab7\OOPLab_7\Entrance_exams\Entrance_exams\Main.cpp(32,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Entrance_exams.vcxproj -> D:\OOP_lab7\OOPLab_7\Entrance_exams\Debug\Entrance_exams.exe

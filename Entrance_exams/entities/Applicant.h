@@ -18,6 +18,8 @@ public:
 		email = Email;
 		passport = passp;
 	}
+	Applicant(int id, string firstN, string lastN, string middleN, int AGE) 
+		: Person(id, firstN, lastN, middleN, AGE) {}
 
 	Applicant(const Applicant& s) : Person(s) {
 		phone_number = s.phone_number;

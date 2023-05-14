@@ -1,8 +1,8 @@
 1 0.5 0.25 0.25 135
-Computer Science
-
-2 0.25 0.30 0.45 140
-Historical Faculty
+Computer Science Faculty
 
 3 0.35 0.30 0.35 132
 Geographical Faculty
+
+2 0.25 0.30 0.45 140
+Historical Faculty

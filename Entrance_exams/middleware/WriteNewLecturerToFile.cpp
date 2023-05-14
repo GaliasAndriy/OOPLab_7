@@ -13,7 +13,8 @@ void writeLecturerToFile(Lecturer& lecturer) {
     // Write empty line before adding new lecturer
     lecturersFile << "\n";
 
-    // Write lecturer data to file
+    
+
     lecturersFile << lecturer.getId() << " " << lecturer.getFirstName() << " " 
         << lecturer.getLastName() << " " << lecturer.getMiddleName() << " " << lecturer.getAge() 
         << " " << lecturer.getFacultyId() << endl;

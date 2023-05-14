@@ -31,5 +31,7 @@ public:
 	double getThresholdScore();
 	void setThresholdScore(double thresholdScore);
 
+	bool operator<(const BaseFaculty& other) const;
+
 	string toString();
 };

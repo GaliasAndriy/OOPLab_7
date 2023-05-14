@@ -145,12 +145,16 @@
     <ClCompile Include="entities\Person.cpp" />
     <ClCompile Include="faculties\BaseFaculty.cpp" />
     <ClCompile Include="faculties\Faculty.cpp" />
+    <ClCompile Include="FinalResult.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="middleware\ChooseObject.cpp" />
+    <ClCompile Include="middleware\CreateNewExam.cpp" />
     <ClCompile Include="middleware\newLecturerForFaculty.cpp" />
     <ClCompile Include="middleware\ReadApplicantsFile.cpp" />
     <ClCompile Include="middleware\ReadFacultyFile.cpp" />
     <ClCompile Include="middleware\ReadLecturersFile.cpp" />
     <ClCompile Include="middleware\WriteNewLecturerToFile.cpp" />
+    <ClCompile Include="WriteExamResultToFiles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\Applicant.h" />
@@ -159,11 +163,15 @@
     <ClInclude Include="entities\Person.h" />
     <ClInclude Include="faculties\BaseFaculty.h" />
     <ClInclude Include="faculties\Faculty.h" />
+    <ClInclude Include="FinalResult.h" />
+    <ClInclude Include="middleware\ChooseObject.h" />
+    <ClInclude Include="middleware\CreateNewExam.h" />
     <ClInclude Include="middleware\newLecturerForFaculty.h" />
     <ClInclude Include="middleware\ReadApplicantsFile.h" />
     <ClInclude Include="middleware\ReadFacultyFile.h" />
     <ClInclude Include="middleware\ReadLecturersFile.h" />
     <ClInclude Include="middleware\WriteNewLecturerToFile.h" />
+    <ClInclude Include="WriteExamResultToFiles.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database\rejected_applicants.txt" />

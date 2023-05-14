@@ -34,3 +34,9 @@ string Lecturer::toString() {
     string result = Person::toString() + "\n Title: " + title + "\n Faculty ID: " + facultyId;
     return result;
 }
+
+string Lecturer::toStringBaseInfo() {
+    string facultyId = to_string(facultyID);
+    string result = Person::toString() + "\n Faculty ID: " + facultyId;
+    return result;
+}

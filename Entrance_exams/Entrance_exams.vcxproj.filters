@@ -48,7 +48,22 @@
     <ClCompile Include="middleware\WriteNewLecturerToFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="middleware\CreateNewExam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="middleware\ChooseObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="middleware\newLecturerForFaculty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="middleware\newLecturerForFaculty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FinalResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteExamResultToFiles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +98,22 @@
     <ClInclude Include="middleware\WriteNewLecturerToFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="middleware\CreateNewExam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="middleware\ChooseObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="middleware\newLecturerForFaculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="middleware\newLecturerForFaculty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FinalResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WriteExamResultToFiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

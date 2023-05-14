@@ -80,7 +80,7 @@ string Exam::toString() {
 	string examGrade = to_string(exam_grade);
 
 	string result = "\n Exam ID: " + examID + "\n Math mark: " + mathMark + "\n Ukrainian language mark: " + ukrMark
-		+ "\n History mark: " + histMark + "\n Exam grade:" + "\033[32m" + examGrade + "\033[0m";
+		+ "\n History mark: " + histMark + "\n Exam grade: " + "\033[32m" + examGrade + "\033[0m";
 	return result;
 }
 

@@ -32,7 +32,6 @@ BaseFaculty& BaseFaculty::operator=(const BaseFaculty& s) {
 	ukrainian_coef = s.ukrainian_coef;
 	history_coef = s.history_coef;
 	threshold_score = s.threshold_score;
-	cout << "   BaseFaculty& operator=(const BaseFaculty& s)" << endl;
 	return *this;
 }
 
@@ -69,6 +68,10 @@ double BaseFaculty::getThresholdScore() {
 }
 void BaseFaculty::setThresholdScore(double thresholdScore) {
 	threshold_score = thresholdScore;
+}
+
+bool BaseFaculty::operator<(const BaseFaculty& other) const {
+	return id < other.id;
 }
 
 string BaseFaculty::toString() {

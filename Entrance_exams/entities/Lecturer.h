@@ -15,6 +15,10 @@ public:
 		title = titl;
 		facultyID = fID;
 	}
+	Lecturer(int id, string firstN, string lastN, string middleN, int AGE, int fID)
+		: Person(id, firstN, lastN, middleN, AGE) {
+		facultyID = fID;
+	}
 
 	Lecturer(const Lecturer& s) : Person(s) {
 		title = s.title;
@@ -29,5 +33,6 @@ public:
 	void setFacultyId(int id);
 
 	string toString();
+	string toStringBaseInfo();
 };
 
