@@ -1,2 +1,3 @@
-﻿  WriteExamResultToFiles.cpp
-  Entrance_exams.vcxproj -> D:\OOP_lab7\OOPLab_7\Entrance_exams\Debug\Entrance_exams.exe
+﻿  Server.cpp
+D:\OOP_repos\OOPLab_7\Entrance_exams\Server.cpp(203,10): warning C4101: 'choice': unreferenced local variable
+  Entrance_exams.vcxproj -> D:\OOP_repos\OOPLab_7\Debug\Entrance_exams.exe

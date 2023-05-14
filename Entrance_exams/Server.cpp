@@ -12,12 +12,60 @@ using namespace std;
 #include "entities/Applicant.h"
 #include "middleware/ReadApplicantsFile.h"
 #include "faculties/Faculty.h"
+#include "./middleware/FinalResult.h"
 #include "middleware/ReadFacultyFile.h"
 #include "middleware/ReadLecturersFile.h"
 #include "middleware/ChooseObject.h"
 #include "middleware/newLecturerForFaculty.h"
 #include "middleware/CreateNewExam.h"
 #include "middleware/WriteExamResultToFiles.h"
+
+void Server::showApprovedExamsList() {
+    string filePath = "database/approved_applicants.txt";
+    int maxID = 0;
+
+    ifstream file(filePath);
+    if (!file.is_open()) {
+        throw runtime_error("File not found");
+    }
+
+    string line;
+    int applicantID = 0, examID, lecturerID, facultyID;
+    string applicantFirstName, applicantLastName, applicantMiddleName;
+    string lecturerFirstName, lecturerLastName, lecturerMiddleName;
+    int applicantAge, lecturerAge;
+    double mathMark, ukrMark, histMark, exam_grade;
+    while (getline(file, line)) {
+        if (line.empty()) {
+            continue;
+        }
+
+        stringstream ss(line);
+        // No data in file
+        ss >> applicantID;
+        ss >> applicantFirstName >> applicantLastName >> applicantMiddleName >> applicantAge;
+
+        getline(file, line);
+        stringstream ss2(line);
+        ss2 >> examID >> mathMark >> ukrMark >> histMark >> exam_grade;
+
+        getline(file, line);
+        stringstream ss3(line);
+        ss3 >> lecturerID >> lecturerFirstName >> lecturerLastName >> lecturerMiddleName >> lecturerAge >> facultyID;
+
+        // Create new obj
+        FinalResult obj
+        (
+            applicantID, applicantFirstName, applicantLastName, applicantMiddleName, applicantAge,
+            examID, mathMark, ukrMark, histMark, exam_grade,
+            lecturerID, lecturerFirstName, lecturerLastName, lecturerMiddleName, lecturerAge, facultyID
+        );
+
+        cout << obj.toString() << endl;
+    }
+    // Close the file
+    file.close();
+}
 
 vector<Applicant> Server::showApplicantList() {
     // Getting list of all the applicants

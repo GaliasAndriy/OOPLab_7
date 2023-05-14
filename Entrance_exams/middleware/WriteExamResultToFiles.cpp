@@ -5,10 +5,14 @@
 #include <sstream>
 #include "WriteExamResultToFiles.h"
 #include "FinalResult.h"
+#include "../middleware/ReadFacultyFile.h"
 #include "../entities/Exam.h"
 #include "../entities/Applicant.h"
 #include "../entities/Lecturer.h"
+
 using namespace std;
+
+#include "../Server.h";
 
 bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicants, int userID,
     vector<Lecturer> lecturers, int chosenLecturerId) {
@@ -81,27 +85,56 @@ bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicant
             // Write empty line before adding new approved exam
             fileExam << "\n\n";
 
+            Applicant resAplicant;
+
             // Write approved exam data to file
             for (auto& applicant : applicants) {
                 if (applicant.getId() == userID) {
                     fileExam << applicant.getId() << " " << applicant.getFirstName() << " " << applicant.getLastName()
                         << " " << applicant.getMiddleName() << " " << applicant.getAge() << "\n";
+
+                    resAplicant = applicant;
                 }
             }
 
             fileExam << newExam.getExamId() << " " << newExam.getMathMark() << " " << newExam.getUkrMark()
                 << " " << newExam.getHistorymark() << " " << newExam.getExamGrade() << "\n";
 
+            Lecturer chosenLecturer = Lecturer();
+
             for (auto& lecturer : lecturers) {
                 if (lecturer.getId() == chosenLecturerId) {
                     fileExam << lecturer.getId() << " " << lecturer.getFirstName() << " " << lecturer.getLastName()
                         << " " << lecturer.getMiddleName() << " " << lecturer.getAge() << " " << lecturer.getFacultyId();
+
+                    chosenLecturer = lecturer;
                 }
             }
 
+
+            // read faculties
+            string facultyFile = "database/faculties.txt";
+            vector<Faculty> faculties = readFacultyFile(facultyFile);
+
+
             cout << "\n----------- Result -----------\n";
             cout << "New exam successfully has been saved into " + filePath + "\n";
+            cout << "\n----------- Exam -----------\n";
+            cout << newExam.toString() << endl;
+            cout << "\n----------- Lecturer -----------\n";
+            cout << chosenLecturer.toString() << endl;
+            cout << "\n----------- Faculty -----------\n";
+            for (auto& faculty : faculties) {
+                if (faculty.getId() == (chosenLecturer.getFacultyId())) {
+                    cout << faculty.toString();
+                }
+            }
+            cout << "\n----------- Aplicant -----------\n";
+            cout << resAplicant.toString() << endl;
+
             cout << "------------------------------\n";
+
+            cout << "\n";
 
             // Close file for writing
             file.close();
@@ -183,25 +216,47 @@ bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicant
         fileExam << "\n\n";
 
         // Write approved exam data to file
+        Applicant resAplicant;
+
         for (auto& applicant : applicants) {
             if (applicant.getId() == userID) {
                 fileExam << applicant.getId() << " " << applicant.getFirstName() << " " << applicant.getLastName()
                     << " " << applicant.getMiddleName() << " " << applicant.getAge() << "\n";
+                resAplicant = applicant;
             }
         }
 
         fileExam << newExam.getExamId() << " " << newExam.getMathMark() << " " << newExam.getUkrMark()
             << " " << newExam.getHistorymark() << " " << newExam.getExamGrade() << "\n";
 
+        Lecturer chosenLecturer;
+
         for (auto& lecturer : lecturers) {
             if (lecturer.getId() == chosenLecturerId) {
                 fileExam << lecturer.getId() << " " << lecturer.getFirstName() << " " << lecturer.getLastName()
                     << " " << lecturer.getMiddleName() << " " << lecturer.getAge() << " " << lecturer.getFacultyId();
+                chosenLecturer = lecturer;
             }
         }
 
+        string facultyFile = "database/faculties.txt";
+        vector<Faculty> faculties = readFacultyFile(facultyFile);
+
         cout << "\n----------- Result -----------\n";
         cout << "New exam successfully has been saved into " + filePath + "\n";
+        cout << "\n----------- Exam -----------\n";
+        cout << newExam.toString() << endl;
+        cout << "\n----------- Lecturer -----------\n";
+        cout << chosenLecturer.toString() << endl;
+        cout << "\n----------- Faculty -----------\n";
+        for (auto& faculty : faculties) {
+            if (faculty.getId() == (chosenLecturer.getFacultyId())) {
+                cout << faculty.toString();
+            }
+        }
+        cout << "\n----------- Aplicant -----------\n";
+        cout << resAplicant.toString() << endl;
+
         cout << "------------------------------\n";
 
         // Close file for writing

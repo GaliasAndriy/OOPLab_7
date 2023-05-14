@@ -23,7 +23,7 @@ public:
 
     Exam& getExam() { return exam; }
     Lecturer& getLecturer() { return lecturer; }
-    Applicant& getPerson() { return applicant; }
+    Person& getPerson() { return applicant; }
 
     int getExamId() {
         return exam.getExamId();

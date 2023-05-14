@@ -64,7 +64,7 @@ int main() {
            server.showLecturersList();
            break;
        case '4':
-           //server.showApprovedExamsList();
+           server.showApprovedExamsList();
            break;
        case '5':
            //server.showRejectedExamList();
