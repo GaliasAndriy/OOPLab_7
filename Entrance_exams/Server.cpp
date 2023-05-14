@@ -96,30 +96,6 @@ void Server::findApplicantByName() {
     cout << "------------------------------------------------------" << endl;
 }
 
-//vector<Lecturer> showLecturersRelatedToFaculty(int facultyID, string facultyName) {
-//    // For choosen facultyID, we're going to show the list of lecturers that belongs to the faculty
-//    string lecturerFile = "database/lecturers.txt";
-//    vector<Lecturer> lecturers = readLecturerFile(lecturerFile);
-//    vector<Lecturer> sortedLecturers;
-//    cout << "\nList of lecturers that belongs to " << facultyName << endl;
-//    cout << "--------------------------------------" << endl;
-//    for (auto& lecturer : lecturers) {
-//        if (lecturer.getFacultyId() == facultyID) {
-//            sortedLecturers.push_back(lecturer);
-//        }
-//    }
-//    // Sort lecturers
-//    sort(sortedLecturers.begin(), sortedLecturers.end(),
-//        [](const Lecturer& a, const Lecturer& b) { return a < b; });
-//    for (auto& lecturer : sortedLecturers) {
-//        cout << lecturer.toString() << endl;
-//        cout << endl;
-//    }
-//    cout << "--------------------------------------" << endl;
-//
-//    return sortedLecturers;
-//}
-
 void Server::findFacultyById() {
     string facultyFile = "database/faculties.txt";
     vector<Faculty> faculties = readFacultyFile(facultyFile);
@@ -184,22 +160,6 @@ void Server::createNewExam() {
     cout << "|  2. Choose applicant          |" << endl;
     cout << "---------------------------------" << endl;
 
-    cout << " Your choice: ";
-    cin >> choice;
-    
-    do {
-
-    } while
-    switch (choice) {
-    case '1':
-        cout << endl;
-        break;
-    case 'e':
-        break;
-    default:
-        cout << "Invalid choice. Please enter a valid option or 'e' to exit." << endl;
-    }
-
     // Call applicant list
     vector<Applicant> applicants = showApplicantList(); 
 
@@ -209,6 +169,8 @@ void Server::createNewExam() {
 
     // Show list of faculties
     vector<Faculty> faculties = showFacultyList();
+
+    //Choose the faculty
     cout << "\nChoose the faculty from previous list: " << endl;
     int facultyID = chooseFaculty(faculties);
     string facultyName;
@@ -268,7 +230,6 @@ void Server::createNewExam() {
 
     // Then we should open a proper file, based on isPassed flag and set id.
     bool resultSuccess = showResultToClient(isPassed, newExam, applicants, userID, lecturers, chosenLecturerId);
-
     if (resultSuccess) {
         cout << "\n Congratulations! You're successfully passed the entrance exams!" << endl;
     }
@@ -288,4 +249,3 @@ std::string Server::trim(const std::string& str) {
     }
     return string(start, end);
 }
-

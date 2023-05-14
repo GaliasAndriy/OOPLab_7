@@ -36,7 +36,6 @@ bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicant
                 }
 
                 stringstream ss(line);
-
                 // No data in file
                 ss >> applicantID;
                 ss >> applicantFirstName >> applicantLastName >> applicantMiddleName >> applicantAge;
@@ -58,30 +57,23 @@ bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicant
                 );
 
                 approvedExams.push_back(obj);
-                // Close file for reading
-                file.close();
+                cout << obj.getExamId() << endl;
             }
+            // Close the file
+            file.close();
 
             // Find maxID value
-            if (applicantID == 0) {
-                newExam.setExamId(1);
-                cout << "\n-------------------------------------------" << endl;
-                cout << newExam.toString() << endl;
-                cout << "\n-------------------------------------------" << endl;
-            }
-            else {
-                for (auto& exam : approvedExams) {
-                    if (exam.getExamId() > maxID) {
-                        maxID = exam.getExamId();
-                    }
+            for (auto& exam : approvedExams) {
+                if (exam.getExamId() > maxID) {
+                    maxID = exam.getExamId();
                 }
-                cout << "\n\n MAX ID: " << maxID << endl;
-                // Now we can save our approved_exam, previously added 1 to maxID value
-                newExam.setExamId(maxID + 1);
-                cout << "\n-------------------------------------------" << endl;
-                cout << newExam.toString() << endl;
-                cout << "\n-------------------------------------------" << endl;
             }
+            cout << "\n\n MAX ID: " << maxID << endl;
+            // Now we can save our approved_exam, previously added 1 to maxID value
+            newExam.setExamId(maxID + 1);
+            cout << "\n-------------------------------------------" << endl;
+            cout << newExam.toString() << endl;
+            cout << "\n-------------------------------------------" << endl;
 
             // Open the same file but for writing option
             ofstream fileExam(filePath, std::ios::app);
@@ -123,74 +115,66 @@ bool showResultToClient(bool isPassed, Exam newExam, vector<Applicant> applicant
     }
 
     else {
-    string filePath = "database/rejected_applicants.txt";
-    vector<FinalResult> approvedExams;
-    int maxID = 0;
+        string filePath = "database/rejected_applicants.txt";
+        vector<FinalResult> approvedExams;
+        int maxID = 0;
 
-    try {
-        ifstream file(filePath);
-        if (!file.is_open()) {
-            throw runtime_error("File not found");
-        }
-
-        string line;
-        int applicantID = 0, examID, lecturerID, facultyID;
-        string applicantFirstName, applicantLastName, applicantMiddleName;
-        string lecturerFirstName, lecturerLastName, lecturerMiddleName;
-        int applicantAge, lecturerAge;
-        double mathMark, ukrMark, histMark, exam_grade;
-        while (getline(file, line)) {
-            if (line.empty()) {
-                continue;
+        try {
+            ifstream file(filePath);
+            if (!file.is_open()) {
+                throw runtime_error("File not found");
             }
 
-            stringstream ss(line);
+            string line;
+            int applicantID = 0, examID, lecturerID, facultyID;
+            string applicantFirstName, applicantLastName, applicantMiddleName;
+            string lecturerFirstName, lecturerLastName, lecturerMiddleName;
+            int applicantAge, lecturerAge;
+            double mathMark, ukrMark, histMark, exam_grade;
+            
+            while (getline(file, line)) {
+                if (line.empty()) {
+                    continue;
+                }
 
-            // No data in file
-            ss >> applicantID;
-            ss >> applicantFirstName >> applicantLastName >> applicantMiddleName >> applicantAge;
+                stringstream ss(line);
+                ss >> applicantID >> applicantFirstName >> applicantLastName >> applicantMiddleName >> applicantAge;
 
-            getline(file, line);
-            stringstream ss2(line);
-            ss2 >> examID >> mathMark >> ukrMark >> histMark >> exam_grade;
+                getline(file, line);
+                stringstream ss2(line);
+                ss2 >> examID >> mathMark >> ukrMark >> histMark >> exam_grade;
 
-            getline(file, line);
-            stringstream ss3(line);
-            ss3 >> lecturerID >> lecturerFirstName >> lecturerLastName >> lecturerMiddleName >> lecturerAge >> facultyID;
+                getline(file, line);
+                stringstream ss3(line);
+                ss3 >> lecturerID >> lecturerFirstName >> lecturerLastName >> lecturerMiddleName >> lecturerAge >> facultyID;
 
-            // Create new obj
-            FinalResult obj
-            (
-                applicantID, applicantFirstName, applicantLastName, applicantMiddleName, applicantAge,
-                examID, mathMark, ukrMark, histMark, exam_grade,
-                lecturerID, lecturerFirstName, lecturerLastName, lecturerMiddleName, lecturerAge, facultyID
-            );
+                // Create new obj
+                FinalResult obj
+                (
+                    applicantID, applicantFirstName, applicantLastName, applicantMiddleName, applicantAge,
+                    examID, mathMark, ukrMark, histMark, exam_grade,
+                    lecturerID, lecturerFirstName, lecturerLastName, lecturerMiddleName, lecturerAge, facultyID
+                );
 
-            approvedExams.push_back(obj);
-            // Close file for reading
+                approvedExams.push_back(obj);
+                cout << obj.toString();
+            }
+
+            // Close the file
             file.close();
-        }
 
         // Find maxID value
-        if (applicantID == 0) {
-            newExam.setExamId(1);
-            cout << "\n-------------------------------------------" << endl;
-            cout << newExam.toString() << endl;
-            cout << "\n-------------------------------------------" << endl;
-        }
-        else {
-            for (auto& exam : approvedExams) {
-                if (exam.getExamId() > maxID) {
-                    maxID = exam.getExamId();
-                }
+        for (auto& exam : approvedExams) {
+            if (exam.getExamId() > maxID) {
+                maxID = exam.getExamId();
             }
-            cout << "\n\n MAX ID: " << maxID << endl;
-            // Now we can save our approved_exam, previously added 1 to maxID value
-            newExam.setExamId(maxID + 1);
-            cout << "\n-------------------------------------------" << endl;
-            cout << newExam.toString() << endl;
-            cout << "\n-------------------------------------------" << endl;
         }
+        cout << "\n\n MAX ID: " << maxID << endl;
+        // Now we can save our approved_exam, previously added 1 to maxID value
+        newExam.setExamId(maxID + 1);
+        cout << "\n-------------------------------------------" << endl;
+        cout << newExam.toString() << endl;
+        cout << "\n-------------------------------------------" << endl;
 
         // Open the same file but for writing option
         ofstream fileExam(filePath, std::ios::app);

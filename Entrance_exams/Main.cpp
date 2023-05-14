@@ -28,13 +28,13 @@ using namespace std;
 #include "Server.h"
 
 int main() {
-    cout << "---------------------------------" << endl;
-    cout << "|" << "\033[33m" << "        Entrance Exams" << "\033[0m" << "         |" << endl;
     srand(time(nullptr));
     Server server;
 
    char choice;
    do {
+       cout << "---------------------------------" << endl;
+       cout << "|" << "\033[33m" << "        Entrance Exams" << "\033[0m" << "         |" << endl;
        cout << "---------------------------------" << endl;
        cout << "|" << "\033[32m" << "  Main Menu:" << "\033[0m" << "                   |" << endl;
        cout << "|  1. Show list of applicants   |" << endl;
@@ -45,9 +45,9 @@ int main() {
        cout << "|  6. New exam                  |" << endl;
        cout << "|  7. Find applicant by name    |" << endl;
        cout << "|  8. Find faculty by ID        |" << endl;
-       cout << "|  9. Show applicant exams      |" << endl;
-       cout << "|  10. Clear console            |" << endl;
-       cout << "|  11. Enter 'e' to exit        |" << endl;
+       //cout << "|  9. Show applicant exams      |" << endl;
+       cout << "|  9. Clear console             |" << endl;
+       cout << "|  10. Enter 'e' to exit        |" << endl;
        cout << "---------------------------------" << endl;
 
        cout << " Your choice: ";
@@ -80,7 +80,7 @@ int main() {
            cout << "\n Find faculty by ID" << endl;
            server.findFacultyById();
            break;
-       case '10':
+       case '9':
            system("cls");
            break;
        case 'e':
