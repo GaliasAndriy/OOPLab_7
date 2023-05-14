@@ -54,7 +54,7 @@ vector<Faculty> Server::showFacultyList() {
     return faculties;
 }
 
-void Server::showLecturerList() {
+vector<Lecturer> Server::showLecturersList() {
     string lecturerFile = "database/lecturers.txt";
     vector<Lecturer> lecturers = readLecturerFile(lecturerFile);
     vector<Lecturer> sortedLecturers;
@@ -71,6 +71,8 @@ void Server::showLecturerList() {
         cout << endl;
     }
     cout << "------------------------------------------------------";
+
+    return lecturers;
 }
 
 void Server::findApplicantByName() {
@@ -93,6 +95,30 @@ void Server::findApplicantByName() {
     }
     cout << "------------------------------------------------------" << endl;
 }
+
+//vector<Lecturer> showLecturersRelatedToFaculty(int facultyID, string facultyName) {
+//    // For choosen facultyID, we're going to show the list of lecturers that belongs to the faculty
+//    string lecturerFile = "database/lecturers.txt";
+//    vector<Lecturer> lecturers = readLecturerFile(lecturerFile);
+//    vector<Lecturer> sortedLecturers;
+//    cout << "\nList of lecturers that belongs to " << facultyName << endl;
+//    cout << "--------------------------------------" << endl;
+//    for (auto& lecturer : lecturers) {
+//        if (lecturer.getFacultyId() == facultyID) {
+//            sortedLecturers.push_back(lecturer);
+//        }
+//    }
+//    // Sort lecturers
+//    sort(sortedLecturers.begin(), sortedLecturers.end(),
+//        [](const Lecturer& a, const Lecturer& b) { return a < b; });
+//    for (auto& lecturer : sortedLecturers) {
+//        cout << lecturer.toString() << endl;
+//        cout << endl;
+//    }
+//    cout << "--------------------------------------" << endl;
+//
+//    return sortedLecturers;
+//}
 
 void Server::findFacultyById() {
     string facultyFile = "database/faculties.txt";
@@ -128,7 +154,52 @@ void Server::findFacultyById() {
     cout << "------------------------------------------------------";
 }
 
-void Server::creatNewExam() {
+int Server::randomLecturer(vector<Lecturer> sortedLecturers, vector<Lecturer> lecturers, int facultyID) {
+    if (sortedLecturers.size() > 0) {
+        int index = rand() % sortedLecturers.size();  // generate a random index
+        Lecturer chosenLecturer = sortedLecturers[index];
+        cout << "\nChosen lecturer: " << endl;
+        cout << chosenLecturer.toString() << endl;
+        return chosenLecturer.getId();
+    }
+    // Create one more lecturers which belongs to specific faculty
+    else {
+        int chosenLecturerId = createNewLecturer(facultyID);
+        for (auto& lect : lecturers) {
+            if (lect.getId() == chosenLecturerId) {
+                cout << "\n Created and choosen lecturer: " << endl;
+                cout << lect.toString() << endl;
+            }
+        }
+        return chosenLecturerId;
+    }
+}
+
+void Server::createNewExam() {
+    char choice;
+    system("cls");
+    cout << "---------------------------------" << endl;
+    cout << "|  Menu for creating a new exam |" << endl;
+    cout << "|  1. Show a list of applicants |" << endl;
+    cout << "|  2. Choose applicant          |" << endl;
+    cout << "---------------------------------" << endl;
+
+    cout << " Your choice: ";
+    cin >> choice;
+    
+    do {
+
+    } while
+    switch (choice) {
+    case '1':
+        cout << endl;
+        break;
+    case 'e':
+        break;
+    default:
+        cout << "Invalid choice. Please enter a valid option or 'e' to exit." << endl;
+    }
+
     // Call applicant list
     vector<Applicant> applicants = showApplicantList(); 
 
@@ -150,7 +221,7 @@ void Server::creatNewExam() {
     // For choosen facultyID, we're going to show the list of lecturers that belongs to the faculty
     string lecturerFile = "database/lecturers.txt";
     vector<Lecturer> lecturers = readLecturerFile(lecturerFile);
-    vector<Lecturer> sortedLecturers;
+    vector<Lecturer> sortedLecturers; 
     cout << "\nList of lecturers that belongs to " << facultyName << endl;
     cout << "--------------------------------------" << endl;
     for (auto& lecturer : lecturers) {
@@ -168,24 +239,7 @@ void Server::creatNewExam() {
     cout << "--------------------------------------" << endl;
 
     // Randomly pick a lecturer
-    int chosenLecturerId = 0;
-    if (sortedLecturers.size() > 0) {
-        int index = rand() % sortedLecturers.size();  // generate a random index
-        Lecturer chosenLecturer = sortedLecturers[index];
-        cout << "\nChosen lecturer: " << endl;
-        cout << chosenLecturer.toString() << endl;
-        chosenLecturerId = chosenLecturer.getId();
-    }
-    // Create one more lecturers which belongs to specific faculty
-    else {
-        chosenLecturerId = createNewLecturer(facultyID);
-        for (auto& lect : lecturers) {
-            if (lect.getId() == chosenLecturerId) {
-                cout << "\n Created and choosen lecturer: " << endl;
-                cout << lect.toString() << endl;
-            }
-        }
-    }
+    int chosenLecturerId = randomLecturer(sortedLecturers, lecturers, facultyID);
 
     // Create new exam with generated id
     Exam newExam = generateExam();
@@ -234,3 +288,4 @@ std::string Server::trim(const std::string& str) {
     }
     return string(start, end);
 }
+

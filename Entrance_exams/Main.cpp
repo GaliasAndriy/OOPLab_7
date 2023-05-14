@@ -61,7 +61,7 @@ int main() {
            server.showFacultyList();
            break;
        case '3':
-           server.showLecturerList();
+           server.showLecturersList();
            break;
        case '4':
            //server.showApprovedExamsList();
@@ -70,7 +70,7 @@ int main() {
            //server.showRejectedExamList();
            break;
        case '6':
-           server.creatNewExam();
+           server.createNewExam();
            break;
        case '7':
            cout << "\n Find applicant by their first and last name" << endl;
